@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import "./main.css";
-import Header from "./component/header";
-import Products from "./component/products";
+import Myshop from "./component/myshop";
 class App extends Component {
   state = {};
   render() {
     return (
-      <div className="App">
-        App
-        <Header name="names" />
-        <Products />
+      <div>
+        <Myshop />
       </div>
     );
   }

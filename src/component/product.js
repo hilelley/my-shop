@@ -2,29 +2,33 @@ import React, { Component } from "react";
 
 class Prodeuct extends Component {
   state = {
-    num: this.props.quantity,
+    quantity: this.props.quantity,
+    plusCount: this.props.plusCount,
+    minusCount: this.props.minusCount,
   };
 
   plus = () => {
-    if (this.state.num) {
-      this.setState(() => ({ num: this.state.num - 1 }));
-    } else {
-      this.setState(() => ({ num: " out of stock" }));
+    if (this.state.quantity) {
+      this.state.plusCount();
+      this.setState({ quantity: this.state.quantity - 1 });
     }
   };
   minus = () => {
-    if (this.props.quantity) this.setState(() => ({ num: this.state.num + 1 }));
+    if (this.state.quantity < this.props.quantity) {
+      this.props.minusCount();
+      this.setState({ quantity: this.state.quantity + 1 });
+    }
   };
   render() {
     return (
-      <div className="Prodeuct">
-        <img src={this.props.src}></img>
+      <div className="Product">
+        <img src={this.props.image}></img>
         <br></br>
 
         <div> {this.props.title}</div>
         <br></br>
         <br></br>
-        <div>Quantity:{this.state.num}</div>
+        <div>Quantity:{this.state.quantity}</div>
         <br></br>
         <button onClick={this.plus}>+</button>
         <button onClick={this.minus}>-</button>
