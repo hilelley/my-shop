@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "./main.css";
-import Header from "./header";
-import Prodeuct from "./product";
-
+import Header from "./component/header";
+import Products from "./component/products";
 class App extends Component {
+  state = {};
   render() {
     return (
       <div className="App">
-        App <Header name="names" />
-        <Prodeuct name="shoki" />
-        <Prodeuct name="boohi" />
-        <Prodeuct name="mooki" />
-        <Prodeuct name="david" />
-        <Prodeuct name="shoook" />
-        <Prodeuct name="mizi" />
+        App
+        <Header name="names" />
+        <Products />
       </div>
     );
   }
