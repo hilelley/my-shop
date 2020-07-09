@@ -6,7 +6,6 @@ class Prodeuct extends Component {
     plusCount: this.props.plusCount,
     minusCount: this.props.minusCount,
   };
-
   plus = () => {
     if (this.state.quantity) {
       this.state.plusCount();
@@ -24,7 +23,6 @@ class Prodeuct extends Component {
       <div className="Product">
         <img src={this.props.image}></img>
         <br></br>
-
         <div> {this.props.title}</div>
         <br></br>
         <br></br>
