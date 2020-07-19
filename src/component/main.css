@@ -1,59 +1,47 @@
 .App {
-  position: relative;
   border: solid;
   border-color: rgb(94, 164, 58);
-  width: 465px;
-  height: 572px;
+  width: auto;
+  height: auto;
   margin: auto;
   margin-top: 5px;
   margin-bottom: 4px;
   font-size: 22px;
   padding: 6px;
   font-family: monospace;
+  display: table;
 }
 
 .Header {
-  width: 437px;
+  width: 450px;
   height: 41px;
   padding-left: 20px;
   padding-top: 10px;
-  margin: 11px;
-  margin-left: 1px;
+  margin-bottom: 11px;
+  margin-left: 181px;
   border: solid;
   border-color: rgb(207, 36, 35);
 }
 .Products {
-  position: relative;
   border: solid;
   border-color: rgb(255, 136, 0);
-  width: 438px;
-  height: 440px;
+  width: 450px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  float: right;
+}
+.crat {
+  border: solid;
+  border-color: rgb(255, 216, 98);
+  width: 139px;
   padding-left: 20px;
   padding-top: 20px;
+  float: left;
+  margin-right: 11px;
 }
-.divCount {
-  position: absolute;
-  top: -1px;
-  right: 1px;
-}
-.Count {
-  border: solid;
-  border-color: rgb(255, 136, 0);
-  width: 133px;
-  height: 43px;
-  float: right;
-  margin-top: 7px;
-  margin-right: 7px;
-  font-size: 17px;
-  padding-left: 3px;
-}
-.divProducts {
-  position: absolute;
-  top: 55px;
-  right: 2px;
-  margin: 2px;
-  width: 453px;
-}
+
 .Product {
   text-align: center;
   margin: 4px;
@@ -64,6 +52,17 @@
   border: solid;
   border-color: rgb(0, 0, 255);
   font-size: 15px;
+}
+.CartProduct {
+  text-align: center;
+  margin: 4px;
+  height: 140px;
+  width: 127px;
+  float: right;
+  padding: 9px;
+  border: solid;
+  border-color: rgb(0, 0, 255);
+  font-size: 12px;
 }
 img {
   width: 40px;

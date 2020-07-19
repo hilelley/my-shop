@@ -1,16 +1,36 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ProductPag from "./productPag";
+
 import "./main.css";
+import axios from "axios";
 import Header from "./header";
 import Products from "./products";
-class Myshop extends Component {
-  render() {
-    return (
+
+const Myshop = () => {
+  const [arrayProdeucts, setArrayProdeucts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://quilt-flax-chemistry.glitch.me/products")
+      .then((res) => setArrayProdeucts(res.data));
+  }, []);
+
+  return (
+    <Router>
+      <Link to={"/"}>Home</Link>
       <div className="App">
-        App
+        {console.log("בןצע רינדור של my shop")}
+        <div>App</div>
         <Header />
-        <Products />
+        {arrayProdeucts.length && <Products array={arrayProdeucts} />}
       </div>
-    );
-  }
-}
+
+      <Switch>
+        <Route path="/:productId">
+          <Header />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 export default Myshop;

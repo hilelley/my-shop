@@ -1,37 +1,40 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ProductPag from "./productPag";
+const Prodeuct = (props) => {
+  const [quantity, setQuantity] = useState(props.quantity);
 
-class Prodeuct extends Component {
-  state = {
-    quantity: this.props.quantity,
-    plusCount: this.props.plusCount,
-    minusCount: this.props.minusCount,
-  };
-  plus = () => {
-    if (this.state.quantity) {
-      this.state.plusCount();
-      this.setState({ quantity: this.state.quantity - 1 });
+  const plus = () => {
+    if (quantity) {
+      props.plus(props.value);
+      return setQuantity(quantity - 1);
     }
   };
-  minus = () => {
-    if (this.state.quantity < this.props.quantity) {
-      this.props.minusCount();
-      this.setState({ quantity: this.state.quantity + 1 });
+
+  const minus = () => {
+    if (quantity < props.quantity) {
+      props.minus();
+      return setQuantity(quantity + 1);
     }
   };
-  render() {
-    return (
-      <div className="Product">
-        <img src={this.props.image}></img>
+
+  return (
+    <Router>
+      <div className={props.className}>
+        <Link to={"/" + props.id}>
+          <img src={props.image}></img>
+        </Link>
+
         <br></br>
-        <div> {this.props.title}</div>
+        <div> {props.title}</div>
         <br></br>
         <br></br>
-        <div>Quantity:{this.state.quantity}</div>
+        <div>Quantity:{quantity}</div>
         <br></br>
-        <button onClick={this.plus}>+</button>
-        <button onClick={this.minus}>-</button>
+        <button onClick={plus}>+</button>
+        <button onClick={minus}>-</button>
       </div>
-    );
-  }
-}
+    </Router>
+  );
+};
 export default Prodeuct;

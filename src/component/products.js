@@ -1,36 +1,59 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Product from "./product";
-import Count from "./count";
-import MapProducts from "./mapProducts";
-class Prodeucts extends Component {
-  state = {
-    MapProducts: MapProducts(),
-    count: 0,
+import Crat from "./cart";
+import CartProduct from "./cartProduct";
+
+const Prodeucts = (props) => {
+  let a = [];
+  let prod;
+  const [arrayProdeucts, setArrayProdeucts] = useState(props.array);
+  const [arrayCart, setArrayCart] = useState(a);
+  const [NewarrayCart, setNewArrayCart] = useState(a);
+
+  const [amountCrat, setAmountCrat] = useState(0);
+
+  const minusCount = () => setAmountCrat(amountCrat - 1);
+  const pluss = (addProd) => {
+    if (arrayCart === a) {
+      addProd.quantity = 0;
+      // addProd.key=num
+      prod = addProd;
+      setArrayCart([addProd]);
+    } else {
+      addProd.quantity = 0;
+      prod = addProd;
+      setArrayCart([addProd, ...arrayCart]);
+    }
   };
-  plusCount = () => this.setState({ count: this.state.count + 1 });
-  minusCount = () => this.setState({ count: this.state.count - 1 });
-  render() {
-    const MapProds = this.state.MapProducts;
-    const count = this.state.count;
-    return (
+  const updateArrayCart = (newList) => setArrayCart(newList);
+
+  return (
+    <React.Fragment>
+      {console.log("בוצע רינדור של products")}
+      <Crat array={arrayCart} updateCartList={updateArrayCart} />
       <div className="Products">
-        Products
-        <div className="divCount">
-          <Count count={count} />
-        </div>
-        <div className="divProducts">
-          {[...MapProds].map((value) => (
+        <div>Products</div>
+        {arrayProdeucts.map((value) => (
+          <div key={value.id}>
             <Product
-              image={value[1].image}
-              title={value[1].title}
-              quantity={value[1].quantity}
-              plusCount={this.plusCount}
-              minusCount={this.minusCount}
+              value={value}
+              id={value.id}
+              className="Product"
+              image={value.image}
+              title={value.title}
+              quantity={value.quantity}
+              plus={pluss}
+              minus={minusCount}
             />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    );
-  }
-}
+    </React.Fragment>
+  );
+};
 export default Prodeucts;
+
+// arrayProdeucts.forEach((product) => {
+//   product.id === value.id &&
+//     setArrayCart([product, ...arrayCart]);
+// });

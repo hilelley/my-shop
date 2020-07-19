@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-import "./App.css";
+import React from "react";
 import Myshop from "./component/myshop";
-class App extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
-        <Myshop />
-      </div>
-    );
-  }
-}
+
+const App = () => (
+  <div>
+    {/* {(window.document.title = "my shop")} */}
+    <Myshop />
+  </div>
+);
 export default App;
