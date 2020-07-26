@@ -3,7 +3,7 @@ import Myshop from "./component/myshop";
 
 const App = () => (
   <div>
-    {(window.document.title = "my shop")}
+    {(window.document.title = "שדרוג עגלת מוצרים")}
     <Myshop />
   </div>
 );
