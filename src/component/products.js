@@ -4,25 +4,40 @@ import Crat from "./cart";
 import CartProduct from "./cartProduct";
 
 const Prodeucts = (props) => {
-  let a = [];
-  let prod;
   const [arrayProdeucts, setArrayProdeucts] = useState(props.array);
-  const [arrayCart, setArrayCart] = useState(a);
-  const [NewarrayCart, setNewArrayCart] = useState(a);
+  const [arrayCart, setArrayCart] = useState([]);
+  // const [amount, setAmount] = useState([]);
 
-  const [amountCrat, setAmountCrat] = useState(0);
-
-  const minusCount = () => setAmountCrat(amountCrat - 1);
-  const pluss = (addProd) => {
-    if (arrayCart === a) {
-      addProd.quantity = 0;
-      // addProd.key=num
-      prod = addProd;
-      setArrayCart([addProd]);
+  const minusCount = (newProduct, id) => {
+    const newProductIndex = arrayCart.findIndex((Product) => Product.id === id);
+    let newArrayCart;
+    if (arrayCart[newProductIndex].quantity === 1) {
+      newArrayCart = arrayCart.filter((product) => product.id !== id);
+      setArrayCart(newArrayCart);
     } else {
-      addProd.quantity = 0;
-      prod = addProd;
-      setArrayCart([addProd, ...arrayCart]);
+      let newProductIndex = arrayCart.findIndex((Product) => Product.id === id);
+      newArrayCart = [...arrayCart];
+      newArrayCart[newProductIndex].quantity--;
+      setArrayCart(newArrayCart);
+    }
+  };
+  const pluss = (newProduct, id) => {
+    if (!arrayCart[0]) {
+      newProduct.quantity = 1;
+      return setArrayCart([newProduct, ...arrayCart]);
+    } else {
+      const found = arrayCart.find((Product) => Product.id === id);
+      if (!found) {
+        newProduct.quantity = 1;
+        setArrayCart([newProduct, ...arrayCart]);
+      } else {
+        let newProductIndex = arrayCart.findIndex(
+          (Product) => Product.id === id
+        );
+        const newArrayCart = [...arrayCart];
+        newArrayCart[newProductIndex].quantity++;
+        setArrayCart(newArrayCart);
+      }
     }
   };
   const updateArrayCart = (newList) => setArrayCart(newList);
@@ -53,7 +68,15 @@ const Prodeucts = (props) => {
 };
 export default Prodeucts;
 
-// arrayProdeucts.forEach((product) => {
-//   product.id === value.id &&
-//     setArrayCart([product, ...arrayCart]);
+// let newArrayCart = arrayCart.map((product) => {
+//   if (product.id === id) {
+//     console.log("123");
+//     product.quantity = product.quantity + 1;
+//     return product;
+//   } else {
+//     console.log("abc");
+//     return product;
+//   }
 // });
+// console.log(newArrayCart);
+// setArrayCart(newArrayCart);

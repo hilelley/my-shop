@@ -3,18 +3,19 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ProductPag from "./productPag";
 const Prodeuct = (props) => {
   const [quantity, setQuantity] = useState(props.quantity);
+  const [initialQuantity, setInitialQuantity] = useState(props.quantity);
 
   const plus = () => {
     if (quantity) {
-      props.plus(props.value);
+      props.plus(props.value, props.id);
       return setQuantity(quantity - 1);
     }
   };
 
   const minus = () => {
-    if (quantity < props.quantity) {
-      props.minus();
-      return setQuantity(quantity + 1);
+    if (quantity < initialQuantity) {
+      props.minus(props.value, props.id);
+      setQuantity(quantity + 1);
     }
   };
 
@@ -28,7 +29,7 @@ const Prodeuct = (props) => {
         <br></br>
         <div> {props.title}</div>
         <br></br>
-        <br></br>
+
         <div>Quantity:{quantity}</div>
         <br></br>
         <button onClick={plus}>+</button>

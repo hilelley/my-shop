@@ -22,14 +22,18 @@ const Myshop = () => {
         {console.log("בןצע רינדור של my shop")}
         <div>App</div>
         <Header />
-        {arrayProdeucts.length && <Products array={arrayProdeucts} />}
+        {arrayProdeucts[0] && <Products array={arrayProdeucts} />}
       </div>
 
-      <Switch>
+      {/* <Switch>
         <Route path="/:productId">
           <Header />
         </Route>
-      </Switch>
+        <Route path="/">
+          <Header />
+        </Route>
+        ד
+      </Switch> */}
     </Router>
   );
 };
