@@ -20,22 +20,20 @@ const Prodeuct = (props) => {
   };
 
   return (
-    <Router>
-      <div className={props.className}>
-        <Link to={"/" + props.id}>
-          <img src={props.image}></img>
-        </Link>
+    <div className={props.className}>
+      <Link to={"/product/" + props.id}>
+        <img src={props.image}></img>
+      </Link>
 
-        <br></br>
-        <div> {props.title}</div>
-        <br></br>
+      <br></br>
+      <div> {props.title}</div>
+      <br></br>
 
-        <div>Quantity:{quantity}</div>
-        <br></br>
-        <button onClick={plus}>+</button>
-        <button onClick={minus}>-</button>
-      </div>
-    </Router>
+      <div>Quantity:{quantity}</div>
+      <br></br>
+      <button onClick={plus}>+</button>
+      <button onClick={minus}>-</button>
+    </div>
   );
 };
 export default Prodeuct;

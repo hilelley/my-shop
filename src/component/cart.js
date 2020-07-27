@@ -22,18 +22,15 @@ const Cart = (props) => {
     newArrayCart = arrayCart.filter(
       (product) => product.id !== productOnRemovId
     );
-    props.updateCartList(newArrayCart);
-    // setArrayCart(newArrayCart);
+    props.updateCartList(newArrayCart, productOnRemovId);
   };
   return (
     <div className="crat">
-      {console.log(amount)}
       Crat <br></br>
       Count:{amount}
       {arrayCart[0] && (
         <React.Fragment>
           {arrayCart.map((cartProdeuct, index) => {
-            console.log(cartProdeuct.quantity);
             return (
               <CartProduct
                 value={cartProdeuct}

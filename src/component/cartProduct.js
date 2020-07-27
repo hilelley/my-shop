@@ -8,7 +8,9 @@ const CartProduct = (props) => {
     <div className={props.className}>
       {console.log("בוצע רינדור של cartPro")}
 
-      <img src={props.image}></img>
+      <Link to={"/product/" + props.id}>
+        <img src={props.image}></img>
+      </Link>
 
       <br></br>
       <div> {props.title}</div>

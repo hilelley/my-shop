@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Product from "./product";
 import Crat from "./cart";
-import CartProduct from "./cartProduct";
 
 const Prodeucts = (props) => {
+  const [initialArrayProdeucts, setInitialArrayProdeucts] = useState(
+    props.array
+  );
   const [arrayProdeucts, setArrayProdeucts] = useState(props.array);
   const [arrayCart, setArrayCart] = useState([]);
-  // const [amount, setAmount] = useState([]);
-
   const minusCount = (newProduct, id) => {
     const newProductIndex = arrayCart.findIndex((Product) => Product.id === id);
     let newArrayCart;
@@ -40,12 +40,31 @@ const Prodeucts = (props) => {
       }
     }
   };
-  const updateArrayCart = (newList) => setArrayCart(newList);
+  const updateArrayCartAndQuantityProdeuct = (newList, productOnRemovId) => {
+    // // console.log("מערך ראשוני" + initialArrayProdeucts);
+    // let initialProdeucts = initialArrayProdeucts.find(
+    //   (Product) => Product.id === productOnRemovId
+    // );
+    // // console.log("פרודוקט ראשוני" + initialProdeucts);
+    // let initialQuantityProdeucts = initialProdeucts.quantity;
+    // // console.log("כמות שלו ראשונית" + initialQuantityProdeucts);
+    // let newProductIndex = arrayProdeucts.findIndex(
+    //   (Product) => Product.id === productOnRemovId
+    // );
+    // const newArrayProdeucts = [...arrayProdeucts];
+    // newArrayProdeucts[newProductIndex].quantity = initialQuantityProdeucts;
+    // // console.log(newArrayProdeucts);
+    // setArrayProdeucts(newArrayProdeucts);
+    setArrayCart(newList);
+  };
 
   return (
     <React.Fragment>
       {console.log("בוצע רינדור של products")}
-      <Crat array={arrayCart} updateCartList={updateArrayCart} />
+      <Crat
+        array={arrayCart}
+        updateCartList={updateArrayCartAndQuantityProdeuct}
+      />
       <div className="Products">
         <div>Products</div>
         {arrayProdeucts.map((value) => (
@@ -67,16 +86,3 @@ const Prodeucts = (props) => {
   );
 };
 export default Prodeucts;
-
-// let newArrayCart = arrayCart.map((product) => {
-//   if (product.id === id) {
-//     console.log("123");
-//     product.quantity = product.quantity + 1;
-//     return product;
-//   } else {
-//     console.log("abc");
-//     return product;
-//   }
-// });
-// console.log(newArrayCart);
-// setArrayCart(newArrayCart);

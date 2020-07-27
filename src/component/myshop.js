@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ProductPag from "./productPag";
-
-import "./main.css";
 import axios from "axios";
 import Header from "./header";
 import Products from "./products";
+import ProductPag from "./productPag";
+import "./main.css";
 
 const Myshop = () => {
   const [arrayProdeucts, setArrayProdeucts] = useState([]);
@@ -17,23 +16,19 @@ const Myshop = () => {
 
   return (
     <Router>
-      <Link to={"/"}>Home</Link>
       <div className="App">
         {console.log("בןצע רינדור של my shop")}
         <div>App</div>
-        <Header />
-        {arrayProdeucts[0] && <Products array={arrayProdeucts} />}
+        <Switch>
+          <Route path="/product/:idParam">
+            <ProductPag />
+          </Route>
+          <Route exact path="/">
+            <Header />
+            {arrayProdeucts[0] && <Products array={arrayProdeucts} />}
+          </Route>
+        </Switch>
       </div>
-
-      {/* <Switch>
-        <Route path="/:productId">
-          <Header />
-        </Route>
-        <Route path="/">
-          <Header />
-        </Route>
-        ד
-      </Switch> */}
     </Router>
   );
 };

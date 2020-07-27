@@ -1,8 +1,6 @@
 .App {
   border: solid;
   border-color: rgb(94, 164, 58);
-  width: auto;
-  height: auto;
   margin: auto;
   margin-top: 5px;
   margin-bottom: 4px;
@@ -72,4 +70,19 @@ img {
   height: 40px;
   background-size: cover;
   background-position: center;
+}
+
+.productPag {
+  background-color: bisque;
+}
+.productPag img {
+  width: 300px;
+  height: 300px;
+}
+
+.productPagTitle {
+  font-family: fantasy;
+  text-align: center;
+  font-size: 41px;
+  padding-top: 44px;
 }
