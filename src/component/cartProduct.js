@@ -32,7 +32,7 @@ const CartProduct = ({ index }) => {
       </Link>
       <br></br>
       <div> {thisProduct.title}</div>
-      <div>Quantity:{thisProduct.quantity}</div>
+      <div>Quantity: {thisProduct.quantity}</div>
       <button onClick={removeFormCart}>Remove Form cart</button>
     </div>
   );
