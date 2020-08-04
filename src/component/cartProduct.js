@@ -1,24 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter as Link } from "react-router-dom";
+import DataContext from "./DataContext";
 
-const CartProduct = (props) => {
-  const remove = () => props.removePro(props.id);
+const CartProduct = ({ index }) => {
+  const dataContext = useContext(DataContext);
+  const changeData = dataContext.changeData;
+  const data = dataContext.data;
+  let arrayProdeucts = dataContext.data.arrayProdeucts;
+  let arrayCart = dataContext.data.arrayCart;
+  const thisProduct = dataContext.data.arrayCart[index];
+
+  const removeFormCart = () => {
+    const quantityOnRemove = thisProduct.quantity;
+    const productOnRemoveIndex = arrayProdeucts.findIndex(
+      (ProductCart) => ProductCart.id === thisProduct.id
+    );
+    arrayProdeucts[productOnRemoveIndex].quantity =
+      arrayProdeucts[productOnRemoveIndex].quantity + quantityOnRemove;
+    arrayCart = arrayCart.filter((product) => product.id !== thisProduct.id);
+    changeData({
+      ...data,
+      arrayProdeucts: arrayProdeucts,
+      arrayCart: arrayCart,
+    });
+  };
 
   return (
-    <div className={props.className}>
-      {console.log("בוצע רינדור של cartPro")}
-
-      <Link to={"/product/" + props.id}>
-        <img src={props.image}></img>
+    <div className="cartProduct">
+      <Link to={"/product/" + thisProduct.id}>
+        <img src={thisProduct.image}></img>
       </Link>
-
       <br></br>
-      <div> {props.title}</div>
-      <br></br>
-      <br></br>
-      <div>Quantity:{props.quantity}</div>
-      <br></br>
-      <button onClick={remove}>Remove Form cart</button>
+      <div> {thisProduct.title}</div>
+      <div>Quantity:{thisProduct.quantity}</div>
+      <button onClick={removeFormCart}>Remove Form cart</button>
+      <button onClick={() => console.log(arrayCart)}>arrayCart</button>
     </div>
   );
 };

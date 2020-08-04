@@ -1,49 +1,38 @@
-import React, { useState, useEffect } from "react";
-import CartProduct from "./cartProduct";
+import React, { useState, useEffect, useContext } from "react";
+import DataContext from "./DataContext";
+import CartProduct from "./CartProduct";
 
-const Cart = (props) => {
-  const [arrayCart, setArrayCart] = useState(props.array);
+const Cart = () => {
+  const dataContext = useContext(DataContext);
+  const changeData = dataContext.changeData;
+  const data = dataContext.data;
+  let arrayCart = dataContext.data.arrayCart;
   const [amount, setAmount] = useState(0);
-  useEffect(() => {
-    setArrayCart(props.array);
-  }, [props.array]);
-  useEffect(() => {
+
+  const updatedAmount = () => {
     if (arrayCart[0]) {
       let newAmount = 0;
-      arrayCart.forEach((p) => (newAmount = newAmount + p.quantity));
-      setAmount(newAmount);
+      arrayCart.forEach(
+        (product) => (newAmount = newAmount + product.quantity)
+      );
+      return newAmount;
     } else {
-      setAmount(0);
+      return 0;
     }
-  }, [arrayCart]);
-
-  const removeFormCart = (productOnRemovId) => {
-    let newArrayCart;
-    newArrayCart = arrayCart.filter(
-      (product) => product.id !== productOnRemovId
-    );
-    props.updateCartList(newArrayCart, productOnRemovId);
   };
+  useEffect(() => setAmount(updatedAmount), [updatedAmount]);
+
   return (
     <div className="crat">
       Crat <br></br>
       Count:{amount}
-      {arrayCart[0] && (
+      {arrayCart && (
         <React.Fragment>
-          {arrayCart.map((cartProdeuct, index) => {
-            return (
-              <CartProduct
-                value={cartProdeuct}
-                key={cartProdeuct.id}
-                id={cartProdeuct.id}
-                className="CartProduct"
-                image={cartProdeuct.image}
-                title={cartProdeuct.title}
-                quantity={cartProdeuct.quantity}
-                removePro={removeFormCart}
-              />
-            );
-          })}
+          {arrayCart.map((value, index) => (
+            <div key={value.id}>
+              <CartProduct index={index} />
+            </div>
+          ))}
         </React.Fragment>
       )}
     </div>

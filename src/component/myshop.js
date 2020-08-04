@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import axios from "axios";
-import Header from "./header";
-import Products from "./products";
-import ProductPag from "./productPag";
+import Header from "./Header";
+import Products from "./Products";
+import ProductPag from "./ProductPag";
+import DataContext from "./DataContext";
 import "./main.css";
 
 const Myshop = () => {
-  const [arrayProdeucts, setArrayProdeucts] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://quilt-flax-chemistry.glitch.me/products")
-      .then((res) => setArrayProdeucts(res.data));
-  }, []);
+  const data = useContext(DataContext).data;
+  const changeData = useContext(DataContext).changeData;
 
   return (
     <Router>
-      <div className="App">
+      <div className="myShop">
         {console.log("בןצע רינדור של my shop")}
         <div>App</div>
         <Switch>
@@ -25,7 +21,7 @@ const Myshop = () => {
           </Route>
           <Route exact path="/">
             <Header />
-            {arrayProdeucts[0] && <Products array={arrayProdeucts} />}
+            <Products />
           </Route>
         </Switch>
       </div>

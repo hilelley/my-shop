@@ -1,4 +1,4 @@
-.App {
+.myShop {
   border: solid;
   border-color: rgb(94, 164, 58);
   margin: auto;
@@ -10,7 +10,7 @@
   display: table;
 }
 
-.Header {
+.header {
   width: 450px;
   height: 41px;
   padding-left: 20px;
@@ -20,7 +20,7 @@
   border: solid;
   border-color: rgb(207, 36, 35);
 }
-.Products {
+.products {
   border: solid;
   border-color: rgb(255, 136, 0);
   width: 450px;
@@ -42,7 +42,7 @@
   overflow: auto;
 }
 
-.Product {
+.product {
   text-align: center;
   margin: 4px;
   height: 168px;
@@ -53,10 +53,10 @@
   border-color: rgb(0, 0, 255);
   font-size: 15px;
 }
-.CartProduct {
+.cartProduct {
   text-align: center;
   margin: 4px;
-  height: 140px;
+  height: 103px;
   width: 127px;
   float: right;
   padding: 9px;
@@ -65,7 +65,8 @@
   font-size: 12px;
   margin-right: 12px;
 }
-img {
+.product img,
+.cartProduct img {
   width: 40px;
   height: 40px;
   background-size: cover;
