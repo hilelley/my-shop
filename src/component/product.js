@@ -45,7 +45,7 @@ const Prodeuct = ({ index }) => {
   const minus = () => {
     if (quantity < initialQuantity) {
       const productWithAmountZero = arrayCart.find(
-        (product) => product.quantity === 1
+        (product) => product.quantity === 1 && product.id === thisProduct.id
       );
       if (productWithAmountZero) {
         arrayCart = arrayCart.filter(
