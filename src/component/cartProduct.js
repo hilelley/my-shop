@@ -34,7 +34,6 @@ const CartProduct = ({ index }) => {
       <div> {thisProduct.title}</div>
       <div>Quantity:{thisProduct.quantity}</div>
       <button onClick={removeFormCart}>Remove Form cart</button>
-      <button onClick={() => console.log(arrayCart)}>arrayCart</button>
     </div>
   );
 };
