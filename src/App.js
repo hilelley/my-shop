@@ -4,6 +4,7 @@ import { DataProvider } from "./component/DataContext";
 import Myshop from "./component/Myshop";
 
 const App = () => {
+  window.document.title = "my best shop";
   const [data, setData] = useState({});
   useEffect(() => {
     axios.get("http://localhost:8000/products").then((res) => {
@@ -17,7 +18,6 @@ const App = () => {
   };
   return (
     <div>
-      {(window.document.title = "my best shop")}
       <DataProvider value={providerOptions}>
         {data.arrayProdeucts && <Myshop />}
       </DataProvider>
