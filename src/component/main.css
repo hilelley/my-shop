@@ -1,3 +1,4 @@
+@import "~antd/dist/antd.css";
 .myShop {
   border: solid;
   border-color: rgb(94, 164, 58);
@@ -19,6 +20,7 @@
   margin-left: 211px;
   border: solid;
   border-color: rgb(207, 36, 35);
+  display: inherit;
 }
 .products {
   border: solid;
@@ -41,6 +43,9 @@
   margin-right: 11px;
   overflow: auto;
 }
+.search {
+  padding-bottom: 9px;
+}
 
 .product {
   text-align: center;
@@ -56,13 +61,13 @@
 .cartProduct {
   text-align: center;
   margin: 4px;
-  height: 103px;
+  height: 115px;
   width: 127px;
   float: right;
-  padding: 9px;
+  padding-top: 5px;
   border: solid;
   border-color: rgb(0, 0, 255);
-  font-size: 12px;
+  font-size: 11px;
   margin-right: 12px;
 }
 .product img,
@@ -71,6 +76,21 @@
   height: 40px;
   background-size: cover;
   background-position: center;
+}
+.product button {
+  width: 20px;
+  height: 20px;
+  padding: 0px !important;
+  color: black;
+  font-size: initial;
+  font-family: inherit;
+}
+
+.cartProduct button {
+  width: 119px;
+  height: 20px;
+  padding: 0px !important;
+  color: black;
 }
 
 .productPag {

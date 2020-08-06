@@ -4,8 +4,6 @@ import CartProduct from "./CartProduct";
 
 const Cart = () => {
   const dataContext = useContext(DataContext);
-  const changeData = dataContext.changeData;
-  const data = dataContext.data;
   let arrayCart = dataContext.data.arrayCart;
   const [amount, setAmount] = useState(0);
 
@@ -27,13 +25,13 @@ const Cart = () => {
       Crat <br></br>
       Count:{amount}
       {arrayCart && (
-        <React.Fragment>
+        <>
           {arrayCart.map((value, index) => (
             <div key={value.id}>
               <CartProduct index={index} />
             </div>
           ))}
-        </React.Fragment>
+        </>
       )}
     </div>
   );

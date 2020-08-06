@@ -8,7 +8,6 @@ const App = () => {
   const [data, setData] = useState({});
   useEffect(() => {
     axios.get("http://localhost:8000/products").then((res) => {
-      console.log(res.data);
       setData({ arrayProdeucts: res.data, arrayCart: [] });
     });
   }, []);
@@ -25,3 +24,8 @@ const App = () => {
   );
 };
 export default App;
+// המשימה של אאפ היא לקבל את הדאטה ולעדכן את הקונטקסט ורק אז לרנדר את החנות שלי עם הדאטה של קונטקסט
+
+// import { useHistory } from "react-router-dom";
+// const history = useHistory();
+// history.push("/searchResult");

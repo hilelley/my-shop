@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import DataContext from "./DataContext";
 
 const CartProduct = ({ index }) => {
@@ -38,3 +38,5 @@ const CartProduct = ({ index }) => {
   );
 };
 export default CartProduct;
+// קומפוננת קצת מסובכת כמו קומפוננתת המוצר כל השינייים שהאייבנט שלהם קורה בקומפוננת
+// גם השינוי של הדאטה בקונטקסט עצמו קורה בקומפוננת

@@ -1,14 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import DataContext from "./DataContext";
 
-const Prodeuct = ({ index }) => {
+const Prodeuct = ({ id }) => {
   const dataContext = useContext(DataContext);
   const changeData = dataContext.changeData;
   const data = dataContext.data;
-  let arrayProdeucts = dataContext.data.arrayProdeucts;
-  let arrayCart = dataContext.data.arrayCart;
-  const thisProduct = dataContext.data.arrayProdeucts[index];
+  let arrayProdeucts = data.arrayProdeucts;
+  let arrayCart = data.arrayCart;
+  const thisProduct = arrayProdeucts.filter(
+    (product) => Object.values(product)[0] === id
+  )[0];
+  const index = arrayProdeucts.findIndex((Product) => Product.id === id);
   const [quantity, setQuantity] = useState(thisProduct.quantity);
   const [initialQuantity] = useState(thisProduct.quantity);
 
@@ -34,7 +37,6 @@ const Prodeuct = ({ index }) => {
         arrayCart[productIndex].quantity++;
       }
     }
-
     changeData({
       ...data,
       arrayProdeucts: arrayProdeucts,
@@ -66,21 +68,23 @@ const Prodeuct = ({ index }) => {
       arrayCart: arrayCart,
     });
   };
+
   return (
     <div className="product">
       <Link to={"/product/" + thisProduct.id}>
         <img src={thisProduct.image}></img>
       </Link>
-
       <br></br>
       <div> {thisProduct.title}</div>
       <br></br>
 
       <div>Quantity:{quantity}</div>
-      <br></br>
       <button onClick={plus}>+</button>
       <button onClick={minus}>-</button>
     </div>
   );
 };
 export default Prodeuct;
+// הקומפוננטה הכי מסובכת הרעיון המסדר של הדברים הוא שכל שינוי שהאיבנט שלו קורה בקומפננת אז היא
+// גם תשנה אותו בפועל בלי לשלוח פרופסים וכו' ולכן כל הסיבוך הזה
+//  בסוף זה יותר פשוט מפרופס עם קומפוננת אבא אחד
