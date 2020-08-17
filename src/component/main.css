@@ -26,11 +26,13 @@
   border: solid;
   border-color: rgb(255, 136, 0);
   width: 450px;
+  height: 471px;
   padding-left: 10px;
   padding-top: 20px;
   padding-right: 10px;
   padding-bottom: 10px;
   float: right;
+  overflow: auto;
 }
 .crat {
   border: solid;
@@ -39,9 +41,18 @@
   height: 435px;
   padding-left: 20px;
   padding-top: 20px;
-  float: left;
+  float: right;
   margin-right: 11px;
   overflow: auto;
+}
+.menu {
+  width: 265px;
+  float: left;
+}
+.menuTitle {
+  border: solid;
+  border-color: rgb(14, 241, 230);
+  text-align: center;
 }
 .search {
   padding-bottom: 9px;

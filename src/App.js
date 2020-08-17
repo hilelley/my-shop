@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataProvider } from "./component/DataContext";
-import Myshop from "./component/Myshop";
+import MyShop from "./component/MyShop";
+import MenuShop from "./component/MenuShop ";
+import "./component/main.css";
 
 const App = () => {
   window.document.title = "my best shop";
@@ -18,14 +20,11 @@ const App = () => {
   return (
     <div>
       <DataProvider value={providerOptions}>
-        {data.arrayProdeucts && <Myshop />}
+        {/* <MenuShop /> */}
+        {data.arrayProdeucts && <MyShop />}
       </DataProvider>
     </div>
   );
 };
 export default App;
 // המשימה של אאפ היא לקבל את הדאטה ולעדכן את הקונטקסט ורק אז לרנדר את החנות שלי עם הדאטה של קונטקסט
-
-// import { useHistory } from "react-router-dom";
-// const history = useHistory();
-// history.push("/searchResult");
