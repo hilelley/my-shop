@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataProvider } from "./component/DataContext";
-import MyShop from "./component/MyShop";
-import MenuShop from "./component/MenuShop ";
+import RouterComponent from "./component/RouterComponent";
 import "./component/main.css";
 
 const App = () => {
@@ -20,8 +19,7 @@ const App = () => {
   return (
     <div>
       <DataProvider value={providerOptions}>
-        {/* <MenuShop /> */}
-        {data.arrayProdeucts && <MyShop />}
+        {data.arrayProdeucts && <RouterComponent />}
       </DataProvider>
     </div>
   );

@@ -3,7 +3,7 @@ import DataContext from "./DataContext";
 import Product from "./Product";
 import SearchProduct from "./SearchProduct";
 
-const Prodeucts = () => {
+const Prodeucts = ({ functionParent }) => {
   const arrayProdeucts = useContext(DataContext).data.arrayProdeucts;
   const arraySearchResult = useContext(DataContext).data.arraySearchResult;
   let [searchMode, setSearchMode] = useState(false);
@@ -15,21 +15,21 @@ const Prodeucts = () => {
       setSearchMode(false);
     }
   };
+  const changeThisProduct = (id) => functionParent(id);
   return (
-    <div className="products">
-      <div>Products</div>
+    <>
       <SearchProduct changerSearchMode={changeSearchMode} />
       {!searchMode &&
         arrayProdeucts.map((value) => (
           <div key={value.id}>
-            <Product id={value.id} />
+            <Product id={value.id} functionParent={changeThisProduct} />
           </div>
         ))}
       {searchMode &&
         (arraySearchResult[0] ? (
           arraySearchResult.map((value) => (
             <div key={value.id}>
-              <Product id={value.id} />
+              <Product id={value.id} functionParent={changeThisProduct} />
             </div>
           ))
         ) : (
@@ -37,7 +37,7 @@ const Prodeucts = () => {
             <h1>Sorry not what you are looking for</h1>
           </div>
         ))}
-    </div>
+    </>
   );
 };
 export default Prodeucts;

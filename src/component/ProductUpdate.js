@@ -1,48 +1,56 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import DataContext from "./DataContext";
-import Product from "./Product";
-import SearchProduct from "./SearchProduct";
+import FormProduct from "./FormProduct";
+import Products from "./Products";
 
-const Prodeucts = () => {
-  const arrayProdeucts = useContext(DataContext).data.arrayProdeucts;
-  const arraySearchResult = useContext(DataContext).data.arraySearchResult;
-  let [searchMode, setSearchMode] = useState(false);
+const ProductUpdate = () => {
+  const [productId, setProductId] = useState(0);
+  const [productValue, setProductValue] = useState(0);
+  const dataContext = useContext(DataContext);
+  const changeData = dataContext.changeData;
+  const data = dataContext.data;
+  const arrayProdeucts = dataContext.data.arrayProdeucts;
 
-  const changeSearchMode = (SearchModeTrue) => {
-    if (SearchModeTrue) {
-      setSearchMode(true);
+  const onFinish = async (values) => {
+    await axios.put("http://localhost:8000/products/" + productId, values);
+    axios.get("http://localhost:8000/products").then((res) => {
+      changeData({
+        ...data,
+        arrayProdeucts: res.data,
+      });
+    });
+  };
+  const gigi = async (id) => {
+    await setProductValue(arrayProdeucts.find((product) => product.id === id));
+    setProductId(id);
+  };
+
+  const pageVieww = (productId) => {
+    if (productId > 0) {
+      return (
+        <>
+          <FormProduct functionParent={onFinish} defaultValue={productValue} />
+          <button onClick={() => setProductId(0)}>חזור לרישמת המוצרים</button>
+        </>
+      );
     } else {
-      setSearchMode(false);
+      return (
+        <>
+          <h5>Click Product to change it</h5>
+          <Products functionParent={gigi} />
+        </>
+      );
     }
   };
+
   return (
     <div className="products">
-      <div>Products</div>
-      <SearchProduct changerSearchMode={changeSearchMode} />
-      {!searchMode &&
-        arrayProdeucts.map((value) => (
-          <div key={value.id}>
-            <Product id={value.id} />
-          </div>
-        ))}
-      {searchMode &&
-        (arraySearchResult[0] ? (
-          arraySearchResult.map((value) => (
-            <div key={value.id}>
-              <Product id={value.id} />
-            </div>
-          ))
-        ) : (
-          <div>
-            <h1>Sorry not what you are looking for</h1>
-          </div>
-        ))}
+      <div>
+        <h2>Product update</h2>
+      </div>
+      {pageVieww(productId)}
     </div>
   );
 };
-export default Prodeucts;
-
-// בתוך פרודקס יש 2 מערכים אחד של המוצרים ואחד של תוצאת החיפוש וגם את קומפוננטת החיפוש והמשימה שלו זה להציג כל פעם את המערך הרלווטי
-// כל פעם ע"פ המשתנה - מצב חיפוש- שקומפוננתת החיפוש משנה אותו לטרו או פולס
-// לכל מוצר נותנים רק ת.ז ובקומפוננת של המוצר עצמו הוא מתרגם את זה לכל האובייקט של המוצר מתוך הדאתה שבקונטקסט וככה אפשר לעדכן את כל הפרטים
-//  של המוצרים בצורה דינמית מול הקונטקסט מה שלא היה אפשר אם הייתי מעביר לו את האינדקס במקום הת.ז
+export default ProductUpdate;

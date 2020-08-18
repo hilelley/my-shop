@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import DataContext from "./DataContext";
 
-const Prodeuct = ({ id }) => {
+const Prodeuct = ({ id, functionParent }) => {
   const dataContext = useContext(DataContext);
   const changeData = dataContext.changeData;
   const data = dataContext.data;
@@ -68,9 +68,11 @@ const Prodeuct = ({ id }) => {
       arrayCart: arrayCart,
     });
   };
-
+  //פה זאת הפונקציה שרלוונטית במקרה של הוספת
+  //  או מחיקת פרודוקט, היא נמצאת על הדיב ובהתאם מוחקת או משנה את הפרודוקט
+  const theProduct = () => functionParent(id);
   return (
-    <div className="product">
+    <div className="product" onClick={theProduct}>
       <Link to={"/product/" + thisProduct.id}>
         <img src={thisProduct.image}></img>
       </Link>
@@ -86,4 +88,4 @@ const Prodeuct = ({ id }) => {
 };
 export default Prodeuct;
 // הקומפוננטה הכי מסובכת הרעיון המסדר של הדברים הוא שכל שינוי שהאיבנט שלו קורה בקומפננת אז היא
-// גם תשנה אותו בפועל בלי לשלוח פרופסים וכו' ולכן זה נראה כך
+// גם תשנה אותו בפועל בקונטקסט בלי לשלוח פרופסים וכו' ולכן זה נראה כך
