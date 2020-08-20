@@ -16,7 +16,7 @@ const SearchProduct = ({ changerSearchMode }) => {
         .get(`http://localhost:8000/products?search=${value}`)
         .then((res) => {
           arraySearchResult = res.data;
-
+          console.log(res.data);
           changeData({
             ...data,
             arraySearchResult: arraySearchResult,

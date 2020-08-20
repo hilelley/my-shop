@@ -14,12 +14,13 @@ const ProductUpdate = () => {
 
   const onFinish = async (values) => {
     await axios.put("http://localhost:8000/products/" + productId, values);
-    axios.get("http://localhost:8000/products").then((res) => {
+    await axios.get("http://localhost:8000/products").then((res) => {
       changeData({
         ...data,
         arrayProdeucts: res.data,
       });
     });
+    setProductId(0);
   };
   const gigi = async (id) => {
     await setProductValue(arrayProdeucts.find((product) => product.id === id));
