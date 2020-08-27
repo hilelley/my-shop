@@ -18,7 +18,7 @@ const DeleteProducts = () => {
 
   const onFinish = async (values) => {
     await axios.delete("http://localhost:8000/products/" + productId);
-    await setProductId(0);
+    setProductId(0);
     axios.get("http://localhost:8000/products").then((res) => {
       changeData({
         ...data,

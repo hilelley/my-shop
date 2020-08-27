@@ -22,7 +22,7 @@ const ProductUpdate = () => {
     });
     setProductId(0);
   };
-  const gigi = async (id) => {
+  const chooseProduct = async (id) => {
     await setProductValue(arrayProdeucts.find((product) => product.id === id));
     setProductId(id);
   };
@@ -39,7 +39,7 @@ const ProductUpdate = () => {
       return (
         <>
           <h5>Click Product to change it</h5>
-          <Products functionParent={gigi} />
+          <Products functionParent={chooseProduct} />
         </>
       );
     }
